@@ -1,5 +1,11 @@
 #include "sort.h"
 
+/**
+ * bubble_sort - sort type
+ * @array: of integers
+ * @size: of the array
+ */
+
 void bubble_sort(int *array, size_t size)
 {
 	size_t i, j;
@@ -12,7 +18,7 @@ void bubble_sort(int *array, size_t size)
 	for (i = 0; i < size - 1; i++)
 	{
 		swapped = 0;
-		for(j = 0; j < size - 1 - i; j++)
+		for (j = 0; j < size - 1 - i; j++)
 		{
 			if (array[j] > array[j + 1])
 			{
