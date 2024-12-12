@@ -20,5 +20,6 @@ typedef struct listint_s
 
 void print_array(const int *, size_t);
 void bubble_sort(int *, size_t);
+void selection_sort(int *, size_t);
 
 #endif
