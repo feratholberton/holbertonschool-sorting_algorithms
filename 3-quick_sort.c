@@ -1,8 +1,8 @@
 #include "sort.h"
 /**
  * swap - swap two elements in an array
- * @a: first element
- * @b: second element
+ * @a: pointer to the first element
+ * @b: pointer to the second element
  */
 void swap(int *a, int *b)
 {
@@ -26,7 +26,6 @@ void function_aux(int *array, int low, int high, size_t size)
 		int i = low - 1;
 		int j;
 
-
 		for (j = low; j < high; j++)
 		{
 			if (array[j] <= pivot)
@@ -41,7 +40,7 @@ void function_aux(int *array, int low, int high, size_t size)
 		print_array(array, size);
 
 		function_aux(array, low, i, size);
-		function_aux(array, i + 2, high, size);
+		function_aux(array, i + 1, high, size);
 	}
 }
 
