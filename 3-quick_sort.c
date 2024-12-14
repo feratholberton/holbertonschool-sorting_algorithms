@@ -1,4 +1,5 @@
 #include "sort.h"
+
 /**
  * swap - swap two elements in an array
  * @a: pointer to the first element
@@ -12,6 +13,41 @@ void swap(int *a, int *b)
 }
 
 /**
+ * lomuto_partition - Lomuto partition scheme for Quick Sort
+ * @array: array to sort
+ * @low: start index of the subarray
+ * @high: ending index of the subarray
+ * @size: total size of the array
+ *
+ * Return: the index of the pivot after partitioning
+ */
+int lomuto_partition(int *array, int low, int high, size_t size)
+{
+	int pivot = array[high];
+	int i = low - 1;
+	int j;
+
+	for (j = low; j < high; j++)
+	{
+		if (array[j] <= pivot)
+		{
+			i++;
+			if (i != j)
+			{
+				swap(&array[i], &array[j]);
+				print_array(array, size);
+			}
+		}
+	}
+	if (i + 1 != high)
+	{
+		swap(&array[i + 1], &array[high]);
+		print_array(array, size);
+	}
+	return (i + 1);
+}
+
+/**
  * function_aux - sort a subarray using Quick Sort
  * @array: array to sort
  * @low: start index of the subarray
@@ -22,25 +58,10 @@ void function_aux(int *array, int low, int high, size_t size)
 {
 	if (low < high)
 	{
-		int pivot = array[high];
-		int i = low - 1;
-		int j;
+		int pivot = lomuto_partition(array, low, high, size);
 
-		for (j = low; j < high; j++)
-		{
-			if (array[j] <= pivot)
-			{
-				i++;
-				swap(&array[i], &array[j]);
-			}
-		}
-
-		swap(&array[i + 1], &array[high]);
-
-		print_array(array, size);
-
-		function_aux(array, low, i, size);
-		function_aux(array, i + 1, high, size);
+		function_aux(array, low, pivot - 1, size);
+		function_aux(array, pivot + 1, high, size);
 	}
 }
 
